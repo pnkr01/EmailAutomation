@@ -50,4 +50,14 @@ public class EmailServiceImpl implements EmailService {
     public void deleteEmail(Long id) {
         emailRepository.deleteById(id);
     }
+
+    @Override
+    public List<Email> findByAssignedUserId(Long id) {
+      return emailRepository.findByAssignedUserId(id);
+    }
+
+    @Override
+    public List<Email> findByAssignedUserEmail(String email) {
+        return emailRepository.findByAssignedUserEmail(email);
+    }
 }

@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gchackathon.emailTracking.enums.Priority;
 import com.gchackathon.emailTracking.enums.TeamKeyword;
 import com.gchackathon.emailTracking.enums.TicketStatus;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,11 +43,25 @@ public class Email {
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
+    @Nullable
+    @ManyToOne
+    @JoinColumn(name = "used_kb_id")
+    private KnowledgeBase usedKbId;
+
+    @Nullable
+    private LocalDateTime escalatedTime;
+
+    @Nullable
     @OneToMany(mappedBy = "email", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<EmailThread> emailThreads;
 
-    public Email(Long id, @NonNull String subject, String body, String sender, LocalDateTime receivedAt, Priority priority, @NonNull String keywords, TeamKeyword assignedTeam, User assignedUser, TicketStatus status, List<EmailThread> emailThreads) {
+    @Nullable
+    @ManyToOne
+    @JoinColumn(name = "escalated_to_user_id")
+    private User escalatedToUser;
+
+    public Email(Long id, @NonNull String subject, String body, String sender, LocalDateTime receivedAt, Priority priority, @NonNull String keywords, TeamKeyword assignedTeam, User assignedUser, TicketStatus status, KnowledgeBase usedKbId, LocalDateTime escalatedTime, List<EmailThread> emailThreads, User escalatedToUser) {
         this.id = id;
         this.subject = subject;
         this.body = body;
@@ -57,7 +72,34 @@ public class Email {
         this.assignedTeam = assignedTeam;
         this.assignedUser = assignedUser;
         this.status = status;
+        this.usedKbId = usedKbId;
+        this.escalatedTime = escalatedTime;
         this.emailThreads = emailThreads;
+        this.escalatedToUser = escalatedToUser;
+    }
+
+    public void setUsedKbId(KnowledgeBase usedKbId) {
+        this.usedKbId = usedKbId;
+    }
+
+    public void setEscalatedTime(LocalDateTime escalatedTime) {
+        this.escalatedTime = escalatedTime;
+    }
+
+    public void setEscalatedToUser(User escalatedToUser) {
+        this.escalatedToUser = escalatedToUser;
+    }
+
+    public KnowledgeBase getUsedKbId() {
+        return usedKbId;
+    }
+
+    public LocalDateTime getEscalatedTime() {
+        return escalatedTime;
+    }
+
+    public User getEscalatedToUser() {
+        return escalatedToUser;
     }
 
     public Email() {
@@ -164,7 +206,10 @@ public class Email {
                 ", assignedTeam=" + assignedTeam +
                 ", assignedUser=" + assignedUser +
                 ", status=" + status +
+                ", usedKbId=" + usedKbId +
+                ", escalatedTime=" + escalatedTime +
                 ", emailThreads=" + emailThreads +
+                ", escalatedToUser=" + escalatedToUser +
                 '}';
     }
 }

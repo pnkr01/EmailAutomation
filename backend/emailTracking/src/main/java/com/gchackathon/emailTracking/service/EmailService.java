@@ -9,4 +9,6 @@ public interface EmailService {
     Email getEmailById(Long id);
     List<Email> getAllEmails();
     void deleteEmail(Long id);
+    List<Email> findByAssignedUserId(Long id);
+    List<Email> findByAssignedUserEmail(String email);
 }

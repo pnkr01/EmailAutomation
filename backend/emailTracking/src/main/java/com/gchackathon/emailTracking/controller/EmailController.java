@@ -22,19 +22,30 @@ public class EmailController {
         return ResponseEntity.status(HttpStatus.CREATED).body(emailService.saveEmail(email));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getbymailid/{id}")
     public ResponseEntity<Email> getEmailById(@PathVariable Long id) {
         return ResponseEntity.ok(emailService.getEmailById(id));
     }
 
-    @GetMapping
+    @GetMapping("/getallemail")
     public ResponseEntity<List<Email>> getAllEmails() {
         return ResponseEntity.ok(emailService.getAllEmails());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletemailbyid/{id}")
     public ResponseEntity<Void> deleteEmail(@PathVariable Long id) {
         emailService.deleteEmail(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/getbyuserid/{id}")
+    public ResponseEntity<List<Email>> getEmailByUserId(@PathVariable Long id) {
+        return ResponseEntity.ok(emailService.findByAssignedUserId(id));
+    }
+
+    @GetMapping("/getbyuseremail/{email}")
+    public ResponseEntity<List<Email>> getEmailByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(emailService.findByAssignedUserEmail(email));
+    }
+
 }
