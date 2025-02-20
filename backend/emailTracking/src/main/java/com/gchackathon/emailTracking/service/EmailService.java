@@ -1,5 +1,6 @@
 package com.gchackathon.emailTracking.service;
 
+import com.gchackathon.emailTracking.dto.IndividualPerformanceDTO;
 import com.gchackathon.emailTracking.models.Email;
 
 import java.util.List;
@@ -11,4 +12,8 @@ public interface EmailService {
     void deleteEmail(Long id);
     List<Email> findByAssignedUserId(Long id);
     List<Email> findByAssignedUserEmail(String email);
+//    PowerBIMetricsDTO powerBIMetricsDTO();
+//    double getQueryResolutionRate();
+//    double getAverageResponseTime();
+    List<IndividualPerformanceDTO> powerBIMetricsDTO();
 }

@@ -1,4 +1,5 @@
 package com.gchackathon.emailTracking.controller;
+import com.gchackathon.emailTracking.dto.IndividualPerformanceDTO;
 import com.gchackathon.emailTracking.models.Email;
 import com.gchackathon.emailTracking.service.EmailService;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,11 @@ public class EmailController {
     @GetMapping("/getbyuseremail/{email}")
     public ResponseEntity<List<Email>> getEmailByEmail(@PathVariable String email) {
         return ResponseEntity.ok(emailService.findByAssignedUserEmail(email));
+    }
+
+    @GetMapping("/getQuery")
+    public List<IndividualPerformanceDTO> getEmailByQuery() {
+       return  emailService.powerBIMetricsDTO();
     }
 
 }
