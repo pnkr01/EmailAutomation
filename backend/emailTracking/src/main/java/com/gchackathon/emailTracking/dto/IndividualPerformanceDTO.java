@@ -8,6 +8,9 @@ public class IndividualPerformanceDTO {
     private long slaMet;
     private double avgResponseTime;
     private long escalations;
+    private LocalDateTime escalatedTime;
+    private LocalDateTime escalatedTime2;
+    private long ll;
 
     public IndividualPerformanceDTO(String teamMember, long queriesSolved, long slaMet, double avgResponseTime, long escalations) {
         this.teamMember = teamMember;
@@ -15,6 +18,51 @@ public class IndividualPerformanceDTO {
         this.slaMet = slaMet;
         this.avgResponseTime = avgResponseTime;
         this.escalations = escalations;
+    }
+
+    public IndividualPerformanceDTO(String teamMember, long queriesSolved, long slaMet, LocalDateTime localDateTime, LocalDateTime localDateTime1, long l) {
+        this.teamMember = teamMember;
+        this.queriesSolved = queriesSolved;
+        this.slaMet = slaMet;
+        this.escalatedTime = localDateTime;
+        this.escalatedTime2 = localDateTime1;
+        this.ll = l;
+    }
+
+    public void setQueriesSolved(long queriesSolved) {
+        this.queriesSolved = queriesSolved;
+    }
+
+    public void setSlaMet(long slaMet) {
+        this.slaMet = slaMet;
+    }
+
+    public void setEscalations(long escalations) {
+        this.escalations = escalations;
+    }
+
+    public LocalDateTime getEscalatedTime() {
+        return escalatedTime;
+    }
+
+    public void setEscalatedTime(LocalDateTime escalatedTime) {
+        this.escalatedTime = escalatedTime;
+    }
+
+    public LocalDateTime getEscalatedTime2() {
+        return escalatedTime2;
+    }
+
+    public void setEscalatedTime2(LocalDateTime escalatedTime2) {
+        this.escalatedTime2 = escalatedTime2;
+    }
+
+    public long getLl() {
+        return ll;
+    }
+
+    public void setLl(long ll) {
+        this.ll = ll;
     }
 
     public String getTeamMember() {
