@@ -1,64 +1,58 @@
 package com.gchackathon.emailTracking.dto;
+import com.gchackathon.emailTracking.models.QueryCategoryDistributionDTO;
+import com.gchackathon.emailTracking.models.QueryResolutionRateDTO;
 import lombok.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class PowerBIMetricsDTO {
-    private List<QueryPriorityDTO> queriesByPriority;
-//    private List<IndividualPerformanceDTO> individualPerformance;
-    private List<QueryTypeDTO> queryTypes;
-//    private List<TeamPerformanceDTO> teamPerformance;
-    private List<EscalationTrendDTO> escalationTrend;
-//    private List<SLAComplianceRateDTO> slaComplianceRate;
     private List<ResolutionTrendDTO> resolutionTrend;
+    private List<EscalationTrendDTO> escalationTrends;
+    private  List<QueryTypeDTO> queryTypes;
+    List<QueryCategoryDistributionDTO> queryCategoryDistributionDTOS;
+    List<QueryResolutionRateDTO> queryResolutionRateDTOS;
+    List<SLAComplianceRateDTO> slaComplianceRateDTOS;
+    List<TeamPerformanceDTO> teamPerformance;
 
-    public List<QueryPriorityDTO> getQueriesByPriority() {
-        return queriesByPriority;
-    }
-
-    public void setQueriesByPriority(List<QueryPriorityDTO> queriesByPriority) {
-        this.queriesByPriority = queriesByPriority;
-    }
-
-//    public List<IndividualPerformanceDTO> getIndividualPerformance() {
-//        return individualPerformance;
-//    }
-//
-//    public void setIndividualPerformance(List<IndividualPerformanceDTO> individualPerformance) {
-//        this.individualPerformance = individualPerformance;
-//    }
-
-    public List<QueryTypeDTO> getQueryTypes() {
-        return queryTypes;
-    }
-
-    public void setQueryTypes(List<QueryTypeDTO> queryTypes) {
+    public PowerBIMetricsDTO(List<ResolutionTrendDTO> resolutionTrend, List<EscalationTrendDTO> escalationTrends, List<QueryTypeDTO> queryTypes,List<QueryCategoryDistributionDTO> queryCategoryDistributionDTOS,  List<QueryResolutionRateDTO> queryResolutionRateDTOS,List<SLAComplianceRateDTO> slaComplianceRateDTOS, List<TeamPerformanceDTO> teamPerformance) {
+        this.resolutionTrend = resolutionTrend;
+        this.escalationTrends = escalationTrends;
         this.queryTypes = queryTypes;
+        this.queryCategoryDistributionDTOS = queryCategoryDistributionDTOS;
+        this.queryResolutionRateDTOS = queryResolutionRateDTOS;
+        this.slaComplianceRateDTOS = slaComplianceRateDTOS;
+        this.teamPerformance = teamPerformance;
     }
 
-//    public List<TeamPerformanceDTO> getTeamPerformance() {
-//        return teamPerformance;
-//    }
-//
-//    public void setTeamPerformance(List<TeamPerformanceDTO> teamPerformance) {
-//        this.teamPerformance = teamPerformance;
-//    }
-
-    public List<EscalationTrendDTO> getEscalationTrend() {
-        return escalationTrend;
+    public PowerBIMetricsDTO() {
     }
 
-    public void setEscalationTrend(List<EscalationTrendDTO> escalationTrend) {
-        this.escalationTrend = escalationTrend;
+
+    public List<TeamPerformanceDTO> getTeamPerformance() {
+        return teamPerformance;
     }
 
-//    public List<SLAComplianceRateDTO> getSlaComplianceRate() {
-//        return slaComplianceRate;
-//    }
-//
-//    public void setSlaComplianceRate(List<SLAComplianceRateDTO> slaComplianceRate) {
-//        this.slaComplianceRate = slaComplianceRate;
-//    }
+    public void setTeamPerformance(List<TeamPerformanceDTO> teamPerformance) {
+        this.teamPerformance = teamPerformance;
+    }
+
+    public List<SLAComplianceRateDTO> getSlaComplianceRateDTOS() {
+        return slaComplianceRateDTOS;
+    }
+
+    public void setSlaComplianceRateDTOS(List<SLAComplianceRateDTO> slaComplianceRateDTOS) {
+        this.slaComplianceRateDTOS = slaComplianceRateDTOS;
+    }
+
+    public List<QueryResolutionRateDTO> getQueryResolutionRateDTOS() {
+        return queryResolutionRateDTOS;
+    }
+
+    public void setQueryResolutionRateDTOS(List<QueryResolutionRateDTO> queryResolutionRateDTOS) {
+        this.queryResolutionRateDTOS = queryResolutionRateDTOS;
+    }
 
     public List<ResolutionTrendDTO> getResolutionTrend() {
         return resolutionTrend;
@@ -68,21 +62,40 @@ public class PowerBIMetricsDTO {
         this.resolutionTrend = resolutionTrend;
     }
 
-    public PowerBIMetricsDTO(List<QueryPriorityDTO> queriesByPriority,
-//                             List<IndividualPerformanceDTO> individualPerformance,
-                             List<QueryTypeDTO> queryTypes,
-                             List<EscalationTrendDTO> escalationTrend,
-                             List<ResolutionTrendDTO> resolutionTrend) {
-        this.queriesByPriority = queriesByPriority;
-//        this.individualPerformance = individualPerformance;
+    public List<EscalationTrendDTO> getEscalationTrends() {
+        return escalationTrends;
+    }
+
+    public void setEscalationTrends(List<EscalationTrendDTO> escalationTrends) {
+        this.escalationTrends = escalationTrends;
+    }
+
+    public List<QueryTypeDTO> getQueryTypes() {
+        return queryTypes;
+    }
+
+    public void setQueryTypes(List<QueryTypeDTO> queryTypes) {
         this.queryTypes = queryTypes;
-//        this.teamPerformance = teamPerformance;
-        this.escalationTrend = escalationTrend;
-//        this.slaComplianceRate = slaComplianceRate;
-        this.resolutionTrend = resolutionTrend;
     }
 
-    public PowerBIMetricsDTO() {
+    public List<QueryCategoryDistributionDTO> getQueryCategoryDistributionDTOS() {
+        return queryCategoryDistributionDTOS;
     }
 
+    public void setQueryCategoryDistributionDTOS(List<QueryCategoryDistributionDTO> queryCategoryDistributionDTOS) {
+        this.queryCategoryDistributionDTOS = queryCategoryDistributionDTOS;
+    }
+
+    @Override
+    public String toString() {
+        return "PowerBIMetricsDTO{" +
+                "resolutionTrend=" + resolutionTrend +
+                ", escalationTrends=" + escalationTrends +
+                ", queryTypes=" + queryTypes +
+                ", queryCategoryDistributionDTOS=" + queryCategoryDistributionDTOS +
+                ", queryResolutionRateDTOS=" + queryResolutionRateDTOS +
+                ", slaComplianceRateDTOS=" + slaComplianceRateDTOS +
+                ", teamPerformance=" + teamPerformance +
+                '}';
+    }
 }

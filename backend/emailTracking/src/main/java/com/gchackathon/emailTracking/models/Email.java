@@ -51,6 +51,7 @@ public class Email {
     @Nullable
     private LocalDateTime escalatedTime;
 
+
     @Nullable
     @OneToMany(mappedBy = "email", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -61,7 +62,13 @@ public class Email {
     @JoinColumn(name = "escalated_to_user_id")
     private User escalatedToUser;
 
-    public Email(Long id, @NonNull String subject, String body, String sender, LocalDateTime receivedAt, Priority priority, @NonNull String keywords, TeamKeyword assignedTeam, User assignedUser, TicketStatus status, KnowledgeBase usedKbId, LocalDateTime escalatedTime, List<EmailThread> emailThreads, User escalatedToUser) {
+    @Nullable
+    private LocalDateTime solvedAt;
+
+    @Nullable
+    private LocalDateTime lastUpdatedAt;
+
+    public Email(Long id, @NonNull String subject, String body, String sender, LocalDateTime receivedAt, Priority priority, @NonNull String keywords, TeamKeyword assignedTeam, User assignedUser, TicketStatus status, KnowledgeBase usedKbId, LocalDateTime escalatedTime, List<EmailThread> emailThreads, User escalatedToUser, LocalDateTime solvedAt, LocalDateTime lastUpdatedAt) {
         this.id = id;
         this.subject = subject;
         this.body = body;
@@ -76,6 +83,27 @@ public class Email {
         this.escalatedTime = escalatedTime;
         this.emailThreads = emailThreads;
         this.escalatedToUser = escalatedToUser;
+        this.solvedAt = LocalDateTime.now();
+        this.lastUpdatedAt = LocalDateTime.now();
+    }
+
+
+    @Nullable
+    public LocalDateTime getSolvedAt() {
+        return solvedAt;
+    }
+
+    public void setSolvedAt(@Nullable LocalDateTime solvedAt) {
+        this.solvedAt = solvedAt;
+    }
+
+    @Nullable
+    public LocalDateTime getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
+    public void setLastUpdatedAt(@Nullable LocalDateTime lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
     }
 
     public void setUsedKbId(KnowledgeBase usedKbId) {
@@ -208,6 +236,8 @@ public class Email {
                 ", status=" + status +
                 ", usedKbId=" + usedKbId +
                 ", escalatedTime=" + escalatedTime +
+                ", solvedAt=" + solvedAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
                 ", emailThreads=" + emailThreads +
                 ", escalatedToUser=" + escalatedToUser +
                 '}';

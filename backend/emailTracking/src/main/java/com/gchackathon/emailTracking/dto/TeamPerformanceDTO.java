@@ -1,65 +1,44 @@
-//package com.gchackathon.emailTracking.dto;
-//import lombok.*;
-//@Getter
-//@Setter
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
-//public class TeamPerformanceDTO {
-//    private String teamMember;
-//    private int resolvedQueries;
-//    private int missedSla;
-//    private double avgResponseTime;
-//
-//    public TeamPerformanceDTO(String teamMember, int resolvedQueries, int missedSla, double avgResponseTime) {
-//        this.teamMember = teamMember;
-//        this.resolvedQueries = resolvedQueries;
-//        this.missedSla = missedSla;
-//        this.avgResponseTime = avgResponseTime;
-//    }
-//
-//    public TeamPerformanceDTO() {
-//    }
-//
-//    public String getTeamMember() {
-//        return teamMember;
-//    }
-//
-//    public void setTeamMember(String teamMember) {
-//        this.teamMember = teamMember;
-//    }
-//
-//    public int getResolvedQueries() {
-//        return resolvedQueries;
-//    }
-//
-//    public void setResolvedQueries(int resolvedQueries) {
-//        this.resolvedQueries = resolvedQueries;
-//    }
-//
-//    public int getMissedSla() {
-//        return missedSla;
-//    }
-//
-//    public void setMissedSla(int missedSla) {
-//        this.missedSla = missedSla;
-//    }
-//
-//    public double getAvgResponseTime() {
-//        return avgResponseTime;
-//    }
-//
-//    public void setAvgResponseTime(double avgResponseTime) {
-//        this.avgResponseTime = avgResponseTime;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "TeamPerformanceDTO{" +
-//                "teamMember='" + teamMember + '\'' +
-//                ", resolvedQueries=" + resolvedQueries +
-//                ", missedSla=" + missedSla +
-//                ", avgResponseTime=" + avgResponseTime +
-//                '}';
-//    }
-//}
+package com.gchackathon.emailTracking.dto;
+
+import lombok.*;
+
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class TeamPerformanceDTO {
+    private String teamMember;
+    private int resolvedQueries = 0;
+    private int missedSla = 0;
+    private double missedResponseTime = 0;
+    private double solvedResponseTime = 0;
+    private double missedResponseRatePerQuery = 0;
+    private double solvedResponseRatePerQuery = 0;
+
+
+    public  TeamPerformanceDTO(String teamMember){}
+    public void incrementResolvedQueries() {
+        this.resolvedQueries++;
+    }
+
+    public void addSolvedTime(long solvedResponseTime) {
+        this.solvedResponseTime += solvedResponseTime;
+    }
+
+    public void addMissedTime(long missedResponseTime) {
+        this.missedResponseTime += missedResponseTime;
+    }
+
+    public void incrementMissedSla() {
+        this.missedSla++;
+    }
+
+    public  double missedResponseRatePerQuery(){
+        return missedResponseTime/missedSla;
+    }
+
+    public double solvedResponseRatePerQuery() {
+       return solvedResponseTime/resolvedQueries;
+    }
+}

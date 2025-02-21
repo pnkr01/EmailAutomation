@@ -1,5 +1,5 @@
 package com.gchackathon.emailTracking.controller;
-import com.gchackathon.emailTracking.dto.IndividualPerformanceDTO;
+import com.gchackathon.emailTracking.dto.PowerBIMetricsDTO;
 import com.gchackathon.emailTracking.models.Email;
 import com.gchackathon.emailTracking.service.EmailService;
 import org.springframework.http.HttpStatus;
@@ -50,8 +50,8 @@ public class EmailController {
     }
 
     @GetMapping("/getQuery")
-    public List<IndividualPerformanceDTO> getEmailByQuery() {
-       return  emailService.powerBIMetricsDTO();
+    public PowerBIMetricsDTO getEmailByQuery(@RequestParam long id) {
+       return  emailService.powerBIMetricsDTO(id);
     }
 
 }

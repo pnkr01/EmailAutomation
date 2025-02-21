@@ -1,13 +1,13 @@
 package com.gchackathon.emailTracking.controller;
 
+import com.gchackathon.emailTracking.dto.IsUserExistsDto;
 import com.gchackathon.emailTracking.models.AdminAddSme;
 import com.gchackathon.emailTracking.models.AdminAddUser;
 import com.gchackathon.emailTracking.service.AdminRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/v1")
@@ -25,4 +25,15 @@ public class AdminController {
     public AdminAddUser saveUser(@RequestBody AdminAddUser adminAddSme) {
         return adminRepositoryService.addUSER(adminAddSme);
     }
+
+    @GetMapping("/getAllSME")
+    public List<AdminAddSme> getAllSME() {
+        return adminRepositoryService.listAllSme();
+    }
+
+    @GetMapping("/getsso")
+    public IsUserExistsDto checkUserExists(@RequestParam("email") String email) {
+        return  adminRepositoryService.checkIfUserExists(email);
+    }
 }
+

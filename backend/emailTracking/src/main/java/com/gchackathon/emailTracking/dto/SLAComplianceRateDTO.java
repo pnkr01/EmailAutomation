@@ -3,13 +3,13 @@ import lombok.*;
 
 public class SLAComplianceRateDTO {
     private String date;
-    private int complianceRate;
+    private double complianceRate;
 
     public SLAComplianceRateDTO() {
 
     }
 
-    public SLAComplianceRateDTO(String date, int complianceRate) {
+    public SLAComplianceRateDTO(String date, double complianceRate) {
         this.date = date;
         this.complianceRate = complianceRate;
     }
@@ -22,7 +22,7 @@ public class SLAComplianceRateDTO {
         this.date = date;
     }
 
-    public int getComplianceRate() {
+    public double getComplianceRate() {
         return complianceRate;
     }
 

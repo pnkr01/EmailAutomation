@@ -38,6 +38,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "assignedSMEName_id")
+    private AdminAddSme adminAddSme;
+
     @Enumerated(EnumType.STRING)
     private TeamKeyword team;
 
